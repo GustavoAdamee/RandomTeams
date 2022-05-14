@@ -21,6 +21,7 @@
                 $_SESSION['user_level'] = $row['userLevel'];
                 $_SESSION['is_goalkeeper'] = $row['goalkeeper'];
                 $_SESSION['user_name'] = $row['userName'];
+                $_SESSION['user_presence'] = $row['presence'];
                 if($row['is_admin'] == 1) {
                     $_SESSION['is_admin'] = true;
                 }
