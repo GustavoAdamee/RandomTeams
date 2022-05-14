@@ -18,7 +18,16 @@
                 session_start();
                 $_SESSION['logged_in'] = true;
                 $_SESSION['user_login'] = $row['userlogin'];
-                echo "<script>alert('Olá $login');</script>";
+                $_SESSION['user_level'] = $row['userLevel'];
+                $_SESSION['is_goalkeeper'] = $row['goalkeeper'];
+                $_SESSION['user_name'] = $row['userName'];
+                if($row['is_admin'] == 1) {
+                    $_SESSION['is_admin'] = true;
+                }
+                else{
+                    $_SESSION['is_admin'] = false;
+                }
+                //Redirects are being used with scripts because it is safer
                 die("<script>window.location.href='../pages/home.php';</script>");
             }
             echo "<script>alert('Senha incorreta!');</script>";
