@@ -64,7 +64,7 @@
             <br><br>
             <h5><strong>Data:</strong>  <?php echo($matchDate);?></h5>
             <br><br>
-            <h5><strong>Número de jogadores:</strong>  <?php echo($matchSize);?></h5>
+            <h5><strong>Jogares por equipe:</strong>  <?php echo($matchSize);?></h5>
             <br><br>
             <div class="left-align">
                 <form action="../php_action/delete-match.php" method="POST">
