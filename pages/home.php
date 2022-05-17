@@ -4,19 +4,10 @@
 
     include_once "../includes/header.php";
     include_once "../php_action/db-connect.php";
+    include_once "../includes/navbar.php";
 
 
 ?>
-
-<nav>
-    <div class="nav-wrapper green">
-      <a href="#!" class="brand-logo center"><i class="large material-icons">code</i>Dev-Society</a>
-      <ul class="right hide-on-med-and-down">
-        <li><i class="material-icons">person</i></li>
-        <li><h5><?php echo($_SESSION['user_login']);?></h5><li>
-      </ul>
-    </div>
-</nav>
 
 <div class="row">
     <div class="col s12 m6 l4">
@@ -52,16 +43,17 @@
                         <h5 class="center-align">Nenhum jogo disponível</h5>
                     <?php 
                         else:
-                            $data = mysqli_fetch_array($result);
+                            $data_match = mysqli_fetch_array($result);
                     ?>
-                        <h5 class="center-align"><?php echo $data['matchName'];?></h5><br>
-                        <h6 class="center-align"><strong>Data:</strong><?php echo $data['matchDate'];?></h6>
+                        <h5 class="center-align"><?php echo $data_match['matchName'];?></h5><br>
+                        <h6 class="center-align"><strong>Data:</strong><?php echo $data_match['matchDate'];?></h6>
                     <?php
-                            if($_SESSION['is_admin'] != 1):
+                        //Verifies if the match is closed so the plain can't join it, and if the user is not the admin
+                            if($_SESSION['is_admin'] != 1 && $data_match['isMatchClosed'] != 1):
                                 $sql_user = "SELECT * FROM user WHERE userLogin = '$_SESSION[user_login]'";
                                 $result_user = mysqli_query($connect, $sql_user);
-                                $data = mysqli_fetch_array($result_user);
-                                if($data['presence'] == 0):
+                                $data_user = mysqli_fetch_array($result_user);
+                                if($data_user['presence'] == 0):
                     ?>  
                                     <form action="../php_action/join-match.php" method="post" class="center-align">
                                         <br><br>
@@ -79,6 +71,14 @@
                                     </form>
                     <?php
                                 endif;
+                            elseif($data_match['isMatchClosed'] == 1):
+                    ?>
+                                <div class="center-align">
+                                    <br><br>
+                                    <button type="submit" name="btn-join-match" class="green btn"><i class="left material-icons">assignment_turned_in</i>
+                                        Visualizar times</button>
+                                </div>
+                    <?php
                             endif;
                         endif;
                     ?>
@@ -116,5 +116,3 @@
     <?php
         endif;
     ?>
-
-</div>

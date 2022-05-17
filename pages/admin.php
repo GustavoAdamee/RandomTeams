@@ -4,6 +4,7 @@
 
     include_once "../includes/header.php";
     include_once "../php_action/db-connect.php";
+    include_once "../includes/navbar.php";
 
     //Check if the button was clicked and swith the user status of presence
     if(isset($_POST['btn-presence'])){
@@ -19,19 +20,6 @@
 
 ?>
 
-    <nav>
-        <div class="nav-wrapper green">
-            <a href="#!" class="brand-logo center"><i class="large material-icons">code</i>Dev-Society</a>
-            <ul class="right hide-on-med-and-down">
-                <li><i class="material-icons">person</i></li>
-                <li><h5><?php echo($_SESSION['user_login']);?></h5><li>
-            </ul>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="../pages/home.php"><i class="material-icons">home</i></a></li>
-            </ul>
-        </div>
-    </nav>
-
     <div class="row">
         <!-- Check if there is a match to happen -->
     <?php
@@ -45,15 +33,15 @@
                 <h2 class="left-align">Cadastro de Partida</h2>
                 <form action="../php_action/create-match.php" method="post">
                     <div class="input-field col s12">
-                        <input type="text" name="matchName" id="matchName">
+                        <input type="text" name="matchName" id="matchName" required>
                         <label class="active" for="matchName">Nome da partida</label>
                     </div>
                     <div class="input-field col s12">
-                        <input type="date" name="matchDate" id="matchDate">
+                        <input type="date" name="matchDate" id="matchDate" required>
                         <label class="active" for="matchDate">Data da partida</label>
                     </div>
                     <div class="input-field col s12">
-                        <input type="number" name="matchSize" id="matchSize">
+                        <input type="number" name="matchSize" id="matchSize" required>
                         <label for="matchSize">Número de jogadores em cada equipe</label>
                     </div>
                     <div class="center-align">
@@ -85,7 +73,7 @@
                 </form>
             </div>
             <div class="center-align">
-                <a href="#" class="green btn">Sortear times</a>
+                <a href="menage-teams.php" class="green btn">Sortear times</a>
             </div>
         </div>
     <?php
