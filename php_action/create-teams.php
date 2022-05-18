@@ -78,6 +78,9 @@
                 $sql_update = "UPDATE user SET userTeam = $actual_team_iterator WHERE id = $id";
                 mysqli_query($connect, $sql_update);
             }
+            //Set the match status to closed
+            $sql_update = "UPDATE matches SET isMatchClosed = 1";
+            mysqli_query($connect, $sql_update);
             echo ("<script>window.location.href='../pages/view-teams.php';</script>");    
         }
     }

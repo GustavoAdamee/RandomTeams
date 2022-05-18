@@ -38,12 +38,12 @@
                         $sql_match = "SELECT * FROM matches";
                         $result = mysqli_query($connect, $sql_match);
                         $rows = mysqli_num_rows($result);
+                        $data_match = mysqli_fetch_array($result);
                         if($rows <= 0):
                     ?>
                         <h5 class="center-align">Nenhum jogo disponível</h5>
                     <?php 
-                        else:
-                            $data_match = mysqli_fetch_array($result);
+                        elseif($rows > 0 && $data_match['isMatchClosed'] == 0):
                     ?>
                         <h5 class="center-align"><?php echo $data_match['matchName'];?></h5><br>
                         <h6 class="center-align"><strong>Data:</strong><?php echo $data_match['matchDate'];?></h6>
@@ -71,17 +71,19 @@
                                     </form>
                     <?php
                                 endif;
-                            elseif($data_match['isMatchClosed'] == 1):
+                            endif;
+                        else:
                     ?>
                                 <div class="center-align">
-                                    <br><br>
-                                    <button type="submit" name="btn-join-match" class="green btn"><i class="left material-icons">assignment_turned_in</i>
-                                        Visualizar times</button>
-                                </div>
+                                    <br>
+                                    <h5 class="center-align">Fase de confirmação encerrada</h5>
+                                    <br>
+                                    <a href="view-teams.php" class="green btn"><i class="left material-icons">face</i>
+                                    Visualizar times formados</a>
+                                </div>    
                     <?php
-                            endif;
                         endif;
-                    ?>
+                    ?>                                
                     
                 </p>
             </div>
