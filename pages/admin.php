@@ -5,6 +5,7 @@
     include_once "../includes/header.php";
     include_once "../php_action/db-connect.php";
     include_once "../includes/navbar.php";
+    include_once "../includes/logged-in-check.php";
 
     //Check if the button was clicked and swith the user status of presence
     if(isset($_POST['btn-presence'])){

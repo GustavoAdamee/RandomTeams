@@ -5,7 +5,8 @@
     include_once "../includes/header.php";
     include_once "../php_action/db-connect.php";
     include_once "../includes/navbar.php";
-
+    include_once "../includes/logged-in-check.php";
+    
 ?>
 
     <div class="row">
