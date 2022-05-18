@@ -64,7 +64,7 @@
             $sql_players = "SELECT * FROM user WHERE NOT goalkeeper = 1 AND presence = 1";
             $result_players = mysqli_query($connect, $sql_players);
             $actual_team_iterator = 0;
-            
+
             while($data_players=mysqli_fetch_array($result_players)){
                 
                 if($actual_team_iterator == $number_teams-1){
@@ -78,6 +78,7 @@
                 $sql_update = "UPDATE user SET userTeam = $actual_team_iterator WHERE id = $id";
                 mysqli_query($connect, $sql_update);
             }
+            echo ("<script>window.location.href='../pages/view-teams.php';</script>");    
         }
     }
 
