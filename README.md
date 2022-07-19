@@ -1,2 +1,1 @@
-# TesteCustomax
-Teste prático para a empresa CustoMax
+# Random soccer Teams
